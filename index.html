@@ -25,11 +25,17 @@
 			.use(DragDrop, { target: '#drag-drop-area' })
 			.use(Tus, {
 				endpoint: 'https://apistream.gotipath.com/tusupload/',
+				retryDelays: [0, 1000, 3000, 5000],
 				chunkSize: 150 * 1024 * 1024,
+				metadata: {
+					filetype: file.type,
+					title: title,
+				},
 				headers: {
-					"X-Auth-ClientId": "your client id",
-					"X-Auth-LibraryId": "your library id",
-					"X-Auth-ApiKey": "Your api Key"
+					"VideoId": "", //optional
+					"X-Auth-ClientId": "",
+					"X-Auth-LibraryId": "",
+					"X-Auth-ApiKey": ""
 				},
 			})
 			.use(ProgressBar, { target: '.for-ProgressBar', hideAfterFinish: false })
